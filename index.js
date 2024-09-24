@@ -12,24 +12,7 @@ mongoose.connect(process.env.uri).then(() => {
 const app = express();
 app.use(express.json());
 app.use('/', require('./routes/routes'));
-const router = express.Router();
-const cors = require('cors');
-const {addPatients,getLatestPatients,latestPatentData} = require('../controllers/controllers');
 
-router.use(cors(
-    {
-        origin: '*',
-        credentials: true
-    }
-));
-
-
-router.post('/addpatient',addPatients);
-router.get('/getlatest',getLatestPatients);
-router.get('/getnew',latestPatentData);
-
-
-module.exports = router;
 const port = 8888;
 
 app.get('/', (req, res) => {
